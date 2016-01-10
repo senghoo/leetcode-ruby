@@ -7,18 +7,23 @@ def my_atoi(str)
 
   arr.each do |i|
     if (i >= '0' and i <= '9')
+      res ||= 0
       res = res * 10 + i.to_i
-    elsif neg.nil? and i == '+' and res == nil
+    elsif res.nil? and neg.nil? and i == '+'
       neg = false
-    elsif neg.nil? and i == '-' and res == nil
+      res = 0
+    elsif res.nil? and neg.nil? and i == '-'
       neg = true
-    elsif res == 0 and i == ' '
+      res = 0
+    elsif res.nil? and i == ' '
       next
     else
       break
     end
 
   end
+
+  res ||= 0
 
   res = neg ? -res : res
 
